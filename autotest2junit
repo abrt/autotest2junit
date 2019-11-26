@@ -79,7 +79,7 @@ def parse(fname):
             time=time_to_seconds(i['time']))
 
     out = etree.SubElement(testsuite, 'system-out')
-    out.text = etree.CDATA(unicode(' '.join(complete), errors='ignore'))
+    out.text = etree.CDATA(' '.join(complete))
     err = etree.SubElement(testsuite, 'system-err')
 
     with open('testsuite.xml', 'w') as outfile:
