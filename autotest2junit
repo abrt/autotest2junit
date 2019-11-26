@@ -83,8 +83,10 @@ def parse(fname):
     err = etree.SubElement(testsuite, 'system-err')
 
     with open('testsuite.xml', 'w') as outfile:
-        outfile.write(etree.tostring(testsuite, xml_declaration=True,
-            pretty_print=True, encoding='UTF-8'))
+        # No, “UTF-8” is not the same as “unicode” in this case.
+        # https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.tostring
+        outfile.write(etree.tostring(testsuite, pretty_print=True,
+                                     encoding='unicode'))
 
 if __name__ == "__main__":
     parse('testsuite.log')
